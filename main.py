@@ -1,6 +1,4 @@
-def main():
-    print("Hello from proyecto1-anahi!")
+import asyncio
+from back import main
 
-
-if __name__ == "__main__":
-    main()
+asyncio.run(main())

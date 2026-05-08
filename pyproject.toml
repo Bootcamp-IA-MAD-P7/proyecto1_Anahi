@@ -9,4 +9,6 @@ dependencies = [
     "numpy>=2.4.4",
     "pandas>=3.0.2",
     "readchar>=4.2.2",
+    "rich>=15.0.0",
+    "rich-gradient>=0.3.11",
 ]

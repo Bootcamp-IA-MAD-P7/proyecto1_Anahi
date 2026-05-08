@@ -1,12 +1,49 @@
-# proyecto1_Anahi
-Taxímetro
+# Taximeter 
+CLI taximeter simulator built in Python using asyncio and OOP.
 
-## Taxi class file. Logic of the taximeter. Methods:
-- start_journey: Resets fare to 0 and starts the trip by setting journey_active to True
-- end_journey: It sets journey_active to False to signal the end of the trip and it returns the fare attribute
-- set_moving: Changes the state of the taxi to movement.
-- set_stopped: Sets the taxi's status as static, it isn't moving but the trip didn't end. Taximeter still running.
-- taximeter: If the taxi is moving it adds RATE_MOVING (0.05€/s), if it stopped but didn't end the trip it adds RATE_STOPPED(0.02€/s).
+## Structure
+```
+proyecto1_Anahi/
+├── taxi.py        # Taxi class — pure fare logic
+├── back.py        # async engine — timing and user input
+├── main.py        # entry point
+├── pyproject.toml
+└── uv.lock
+```
 
-#### Back file
-An object of the Taxi() class is created inside the meter variable. 
+## How It Works
+The project is split into 3 layers:
+**taxi.py** Contains the Taxi class. It holds the state of the taximeter (fare, journey status, movement status) and the methods to modify it.  
+**back.py** Contains the async engine. It runs two coroutines concurrently via asyncio.gather: 
+- Fare counter - Calls meter.taximeter() every second.
+- Input handler - Listens for user commands. User input is captured keystroke by keystroke using readchar, with no Enter required.
+**main.py** Entry point. It starts the event loop with asyncio.run(main()).
+
+## Interface
+The terminal interface uses Rich and rich-gradient to display colorful menus and improve the visual experience of the application.
+
+## Requirements 
+- Python 3.10+
+- [uv](https://github.com/astral-sh/uv)
+
+## Installation
+````bash
+git clone https://github.com/Bootcamp-IA-MAD-P7/proyecto1_Anahi.git
+cd proyecto1_Anahi
+uv sync
+````
+ 
+## Usage
+ 
+```bash
+uv run main.py
+```
+
+## Commands
+| Key | Action |
+|-----|--------|
+| `i` | Start journey |
+| `m` | Set moving |
+| `p` | Set stationary |
+| `f` | End journey |
+| `s` | Quit |

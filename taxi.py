@@ -10,6 +10,8 @@ class Taxi:
     def start_journey(self):
         self.fare = 0.00
         self.journey_active = True
+        self.moving = True
+
 
     def end_journey(self):
         self.journey_active = False

@@ -30,5 +30,5 @@ class Taxi:
     def set_rates(self, rate_moving, rate_stopped):
         if rate_moving <= 0 or rate_stopped <= 0:
             raise ValueError("Las tarifas deben ser números positivos")
-    self.rate_moving = rate_moving
-    self.rate_stopped = rate_stopped
+        self.rate_moving = rate_moving
+        self.rate_stopped = rate_stopped

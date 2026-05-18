@@ -7,3 +7,7 @@
 2026-05-18 18:06:17.407 | INFO     | back:handle_input:72 - Status: moving again
 2026-05-18 18:06:18.741 | INFO     | back:handle_input:89 - Journey ended. Total fare: €0.22
 2026-05-18 18:06:20.043 | INFO     | back:handle_input:95 - App closed by user
+2026-05-18 22:56:47.494 | INFO     | back:handle_input:65 - Journey started
+2026-05-18 22:56:51.681 | INFO     | back:handle_input:80 - Status: stopped
+2026-05-18 22:56:54.816 | INFO     | back:handle_input:89 - Journey ended. Total fare: €0.26
+2026-05-18 22:56:56.526 | INFO     | back:handle_input:95 - App closed by user

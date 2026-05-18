@@ -1,6 +1,6 @@
 import asyncio
 import readchar
-from taxi import Taxi, RATE_MOVING, RATE_STOPPED
+from taxi import Taxi
 from rich import print
 from rich.console import Console
 from rich_gradient import Gradient

@@ -1,7 +1,7 @@
 import asyncio
 import readchar
 from taxi import Taxi, RATE_MOVING, RATE_STOPPED
-
+from logger import logger
 from rich import print
 from rich.console import Console
 from rich_gradient import Gradient
@@ -20,9 +20,8 @@ async def count_fare():
             console.print(f"Coste del viaje: {meter.fare:.2f}€", style="#B088C8")
 
 async def get_input():
-    loop = asyncio.get_event_loop()
     while True:
-        key = await loop.run_in_executor(None, readchar.readkey)
+        key = await asyncio.to_thread(readchar.readkey)
         key = key.strip().casefold()
         if key in VALID_COMMANDS:
             print(key)   # echo so user sees what they pressed
@@ -63,12 +62,14 @@ async def handle_input():
                     meter.start_journey()
                     print("Trayecto iniciado. Tarifa en marcha.")
                     asyncio.create_task(count_fare())
+                    logger.info("Journey started")
             case "m":
                 if not meter.journey_active:
                     console.print("No hay trayecto activo. Pulsa [i] para iniciar.", style="bold cyan")
                 else:
                     meter.set_moving()
                     print("Taxi en movimiento.")
+                    logger.info("Status: moving again")
 
             case "p":
                 if not meter.journey_active:
@@ -76,6 +77,7 @@ async def handle_input():
                 else:
                     meter.set_stopped()
                     console.print("Taxi parado. El taxímetro sigue corriendo.", style="#FFB8CC")
+                    logger.info("Status: stopped")
 
             case "f":
                 if not meter.journey_active:
@@ -84,11 +86,13 @@ async def handle_input():
                     final = meter.end_journey()
                     console.print(Gradient(f"\n Trayecto finalizado. Total: €{final:.2f}", rainbow=True))
                     console.print(Gradient(" Pulsa (i) para nuevo trayecto o (s) para salir.\n", rainbow=True))
+                    logger.info(f"Journey ended. Total fare: €{final:.2f}")
 
             case "s":
                 if meter.journey_active:
                     meter.end_journey()
                 console.print(Gradient("\n¡Muchas gracias!\n", rainbow=True))
+                logger.info("App closed by user")
                 break
 
 async def main():

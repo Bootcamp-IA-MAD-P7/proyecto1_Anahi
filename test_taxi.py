@@ -1,7 +1,5 @@
 import pytest
-from taxi import Taxi, RATE_MOVING, RATE_STOPPED
-
-
+from taxi import Taxi
 @pytest.fixture
 def taxi():
     return Taxi()
@@ -31,13 +29,13 @@ def test_start_resets_fare(taxi):
 def test_taximeter_moving(taxi):
     taxi.start_journey()
     taxi.taximeter()
-    assert taxi.fare == pytest.approx(RATE_MOVING)
+    assert taxi.fare == pytest.approx(taxi.rate_moving)
 
 def test_taximeter_stopped(taxi):
     taxi.start_journey()
     taxi.set_stopped()
     taxi.taximeter()
-    assert taxi.fare == pytest.approx(RATE_STOPPED)
+    assert taxi.fare == pytest.approx(taxi.rate_stopped)
 
 def test_taximeter_accumulates(taxi):
     taxi.start_journey()
@@ -45,7 +43,7 @@ def test_taximeter_accumulates(taxi):
     taxi.taximeter()   # moving
     taxi.set_stopped()
     taxi.taximeter()   # stopped
-    assert taxi.fare == pytest.approx(2 * RATE_MOVING + RATE_STOPPED)
+    assert taxi.fare == pytest.approx(2 * taxi.rate_moving + taxi.rate_stopped)
 
 def test_set_stopped(taxi):
     taxi.start_journey()
@@ -63,7 +61,7 @@ def test_end_returns_fare(taxi):
     taxi.taximeter()
     taxi.taximeter()
     result = taxi.end_journey()
-    assert result == pytest.approx(2 * RATE_MOVING)
+    assert result == pytest.approx(2 * taxi.rate_moving)
 
 def test_end_deactivates_journey(taxi):
     taxi.start_journey()

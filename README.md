@@ -1,49 +1,69 @@
-# Taximeter 
-CLI taximeter simulator built in Python using asyncio and OOP.
+# Taxi meter
 
-## Structure
+A rainbow-styled command-line taxi meter built with Python and asyncio.
+
+## Features
+
+- Real-time fare calculation with moving and stopped rates
+- Colorful CLI interface using Rich and rich-gradient
+- Journey history saved to `journey_history.txt`
+- Structured logging to `taxi.log` via Loguru
+- Configurable rates via `set_rates()`
+- Unit tested with pytest
+
+## Project Structure
+
 ```
 proyecto1_Anahi/
-├── taxi.py        # Taxi class — pure fare logic
-├── back.py        # async engine — timing and user input
-├── main.py        # entry point
-├── pyproject.toml
-└── uv.lock
+├── main.py              # Entry point
+├── back.py              # CLI logic and asyncio input handling
+├── taxi.py              # Taxi class and fare logic
+├── logger.py            # Loguru setup
+├── test_taxi.py         # Unit tests
+├── taxi.log             # Auto-generated log file
+└── journey_history.txt  # Auto-generated journey history
 ```
 
-## How It Works
-The project is split into 3 layers:
-**taxi.py** Contains the Taxi class. It holds the state of the taximeter (fare, journey status, movement status) and the methods to modify it.  
-**back.py** Contains the async engine. It runs two coroutines concurrently via asyncio.gather: 
-- Fare counter - Calls meter.taximeter() every second.
-- Input handler - Listens for user commands. User input is captured keystroke by keystroke using readchar, with no Enter required.
-**main.py** Entry point. It starts the event loop with asyncio.run(main()).
+## Requirements
 
-## Interface
-The terminal interface uses Rich and rich-gradient to display colorful menus and improve the visual experience of the application.
-
-## Requirements 
-- Python 3.10+
-- [uv](https://github.com/astral-sh/uv)
+- Python >= 3.14
+- uv (package manager)
 
 ## Installation
-````bash
+
+```bash
 git clone https://github.com/Bootcamp-IA-MAD-P7/proyecto1_Anahi.git
 cd proyecto1_Anahi
 uv sync
-````
- 
+```
+
 ## Usage
- 
+
 ```bash
-uv run main.py
+uv run python main.py
 ```
 
 ## Commands
-| Key | Action |
-|-----|--------|
-| `i` | Start journey |
-| `m` | Set moving |
-| `p` | Set stationary |
-| `f` | End journey |
-| `s` | Quit |
+
+| Key | Action          |
+|-----|-----------------|
+| `i` | Start journey   |
+| `m` | Set moving      |
+| `p` | Pause           |
+| `f` | End journey     |
+| `s` | Exit            |
+
+## Running Tests
+
+```bash
+uv run pytest test_taxi.py -v
+```
+
+## Tech Stack
+
+- Python 3.14
+- asyncio
+- Rich + rich-gradient
+- Loguru
+- readchar
+- pytest

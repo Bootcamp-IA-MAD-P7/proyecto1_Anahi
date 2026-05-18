@@ -1,0 +1,9 @@
+2026-05-18 15:26:27.696 | INFO     | logger:<module>:9 - logger setup complete
+2026-05-18 15:43:32.357 | INFO     | back:handle_input:65 - Journey started
+2026-05-18 15:43:35.966 | INFO     | back:handle_input:80 - Status: stopped
+2026-05-18 15:43:39.332 | INFO     | back:handle_input:72 - Status: moving again
+2026-05-18 15:43:42.405 | INFO     | back:handle_input:89 - Journey ended. Total fare: €0.36
+2026-05-18 15:43:45.151 | INFO     | back:handle_input:65 - Journey started
+2026-05-18 15:43:47.281 | INFO     | back:handle_input:80 - Status: stopped
+2026-05-18 15:43:50.139 | INFO     | back:handle_input:89 - Journey ended. Total fare: €0.14
+2026-05-18 15:43:51.781 | INFO     | back:handle_input:95 - App closed by user
